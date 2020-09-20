@@ -27,7 +27,7 @@
 
 
 
-int my=1;
+int* my[100];
 
  __tfm_secure_gateway_attributes__
 uint32_t enter_veneer(int ad)
