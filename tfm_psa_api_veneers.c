@@ -27,25 +27,31 @@
 
 
 
-int* my[100];
-
+int* ret_add[100];
+int top = -1;
+int *temp;
  __tfm_secure_gateway_attributes__
 uint32_t enter_veneer(int ad)
 {	
     __asm__ volatile(
-  		    "ldr  R5,=my \n"
+  		    "ldr  R5,=temp \n"
     		    "MOV  R4,R0           \n"
-    		    "STR  R4,[R5] \n"
-                    "BXNS LR          \n"
+    		    "STR  R4,[R5] \n" 
                     );
+                    top++;
+                    ret_add[top] = temp;
+     __asm__ volatile("BXNS LR          \n");
 }
 
 __tfm_secure_gateway_attributes__
 uint32_t exit_veneer(int ad)
 {
+    temp = ret_add[top];
+    top--;
     __asm__ volatile(
-                    "LDR  R4,=my           \n"
+                    "LDR  R4,=temp           \n"
     		    "CMP  R4,R0           \n"
+    		    	   
                     "BXNS LR          \n"
                     );
 }

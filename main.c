@@ -15,10 +15,7 @@
 
 K_MUTEX_DEFINE(tfm_mutex);
 
-typedef struct s_stack{
-	uint32_t* stack[100];
-	int top;	
-}s_stack;
+
 __attribute__ ((no_instrument_function))
 void __cyg_profile_func_enter(void *this, void *call_site) 
 {
@@ -28,7 +25,7 @@ void __cyg_profile_func_enter(void *this, void *call_site)
 	"mov   r0,lr \n\t"
 	"bl enter_veneer");
 
-	//enter_veneer(1);
+	
 }
 
 __attribute__ ((no_instrument_function))
@@ -39,7 +36,7 @@ void __cyg_profile_func_exit(void *this, void *call_site)
 			"mov r0,lr \n\t"
 			"bl exit_veneer \n\t");
 			
-                               // return (veneer_fn)exit_veneer(1);
+                              
 	}
 	
 /*
@@ -133,7 +130,7 @@ static void tfm_ipc_test_1001(void)
  *
  * @return N/A
  */
- __attribute__ ((no_instrument_function))
+
 static void tfm_ipc_test_1002(void)
 {
 	uint32_t version;
@@ -280,18 +277,16 @@ arr[top] = 0x0234D;
 void main(void)
 {
 	
-	//s_stack mystack;
-	add(arr,top);
-	//tfm_ipc_test_1001();
-	//s_stack my = make_stack();
-	//push_stack(&my,a);
-	//pop_stack(&my,a);
 	
-	//tfm_ipc_test_1002();
-	//tfm_ipc_test_1003();
-	//tfm_ipc_test_1004();
-	//tfm_ipc_test_1005();
-	//tfm_ipc_test_1006();
+	add(arr,top);
+	tfm_ipc_test_1001();
+	
+	
+	tfm_ipc_test_1002();
+	tfm_ipc_test_1003();
+	tfm_ipc_test_1004();
+	tfm_ipc_test_1005();
+	tfm_ipc_test_1006();
 
-	//printk("TF-M IPC on %s\n", CONFIG_BOARD);
+	printk("TF-M IPC on %s\n", CONFIG_BOARD);
 }
