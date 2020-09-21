@@ -11,7 +11,7 @@
 #include "tfm_ns_interface.h"
 #ifdef TFM_PSA_API
 #include "psa_manifest/sid.h"
-#include <sys/time.h>
+#include <time.h>
 #endif
 
 
