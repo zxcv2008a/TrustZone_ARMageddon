@@ -120,7 +120,7 @@ static void tfm_ipc_test_1001(void)
 	version = psa_framework_version();
 	if (version == PSA_FRAMEWORK_VERSION) {
 		printk("The version of the PSA Framework API is %d.\n",version);
-           clock_t toc = clock();
+           double toc = clock();
            test1001 = (double)(toc-tic);
 	} else {
 		printk("The version of the PSA Framework API is not valid!\n");
@@ -171,7 +171,7 @@ static void tfm_ipc_test_1003(void)
 			     IPC_SERVICE_TEST_BASIC_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    clock_t toc = clock();
+    double toc = clock();
     test1003 = (double)(toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
@@ -231,7 +231,7 @@ static void tfm_ipc_test_1004(void)
  */
 static void tfm_ipc_test_1005(void)
 {
-  clock_t tic = clock();
+  double tic = clock();
 	psa_handle_t handle;
 	psa_status_t status;
 	int test_result;
