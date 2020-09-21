@@ -114,18 +114,18 @@ enum tfm_status_e tfm_ns_interface_init(void)
  */
 static void tfm_ipc_test_1001(void)
 {
-  clock_t tic = clock();
+  double tic = clock();
 	uint32_t version;
 
 	version = psa_framework_version();
 	if (version == PSA_FRAMEWORK_VERSION) {
 		printk("The version of the PSA Framework API is %d.\n",version);
            clock_t toc = clock();
-           test1001 = (double)(toc - tic )/ CLOCKS_PER_SECOND;
+           test1001 = (double)(toc-tic);
 	} else {
 		printk("The version of the PSA Framework API is not valid!\n");
-    clock_t toc = clock();
-    test1001 = (double)(toc - tic )/ CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1001 = (double)(toc-tic);
 		return;
 	}
 
@@ -141,15 +141,15 @@ static void tfm_ipc_test_1001(void)
 
 static void tfm_ipc_test_1002(void)
 {
-  clock_t tic = clock();
+  double tic = clock();
 	uint32_t version;
 
 	version = psa_version(IPC_SERVICE_TEST_BASIC_SID);
 	if (version == PSA_VERSION_NONE) {
 		printk("RoT Service is not implemented or caller is not ");
 		printk("authorized to access it!\n");
-    clock_t toc = clock();
-    test1002 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1002 = (double)(toc-tic);
 		return;
 	}
 
@@ -164,7 +164,7 @@ static void tfm_ipc_test_1002(void)
  */
 static void tfm_ipc_test_1003(void)
 {
-  clock_t tic = clock();
+  double tic = clock();
 	psa_handle_t handle;
 
 	handle = psa_connect(IPC_SERVICE_TEST_BASIC_SID,
@@ -172,11 +172,11 @@ static void tfm_ipc_test_1003(void)
 	if (handle > 0) {
 		printk("Connect success!\n");
     clock_t toc = clock();
-    test1003 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    test1003 = (double)(toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    clock_t toc = clock();
-    test1003 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1003 = (double)(toc-tic);
 		return;
 	}
 	psa_close(handle);
@@ -189,7 +189,7 @@ static void tfm_ipc_test_1003(void)
  */
 static void tfm_ipc_test_1004(void)
 {
-  clock_t tic = clock();
+  double tic = clock();
 	char str1[] = "str1";
 	char str2[] = "str2";
 	char str3[128], str4[128];
@@ -212,12 +212,12 @@ static void tfm_ipc_test_1004(void)
 	status = psa_call(handle, PSA_IPC_CALL, invecs, 2, outvecs, 2);
 	if (status >= 0) {
 		printk("psa_call is successful!\n");
-    clock_t toc = clock();
-    test1004 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1004 = (double)(toc-tic);
 	} else {
 		printk("psa_call is failed!\n");
-    clock_t toc = clock();
-    test1004 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1004 = (double)(toc-tic);
 		return;
 	}
 
@@ -242,12 +242,12 @@ static void tfm_ipc_test_1005(void)
 			     IPC_CLIENT_TEST_BASIC_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    clock_t toc = clock();
-    test1005 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1005 = (double)(toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    clock_t toc = clock();
-    test1005 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1005 = (double)(toc-tic);
 		return;
 	}
 
@@ -267,7 +267,7 @@ static void tfm_ipc_test_1005(void)
  */
 static void tfm_ipc_test_1006(void)
 {
-  clock_t tic = clock();
+  double tic = clock();
 	psa_handle_t handle;
 	psa_status_t status;
 	int test_result;
@@ -279,12 +279,12 @@ static void tfm_ipc_test_1006(void)
 		IPC_CLIENT_TEST_PSA_ACCESS_APP_MEM_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    clock_t toc = clock();
-    test1006 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1006 = (double)(toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    clock_t toc = clock();
-    test1006 = (double)(toc-tic)/CLOCKS_PER_SECOND;
+    double toc = clock();
+    test1006 = (double)(toc-tic);
 		return;
 	}
 
@@ -311,18 +311,18 @@ void main(void)
 
 	add(arr,top);
 	tfm_ipc_test_1001();
-  printk("Test 1001 = %f\n", test1001);
+  printk("Test 1001 = %f\n", test1001/ CLOCKS_PER_SEC);
 
 	tfm_ipc_test_1002();
-  printk("Test 1002 = %f\n", test1002);
+  printk("Test 1002 = %f\n", test1002/ CLOCKS_PER_SEC);
 	tfm_ipc_test_1003();
-  printk("Test 1003 = %f\n", test1003);
+  printk("Test 1003 = %f\n", test1003/ CLOCKS_PER_SEC);
 	tfm_ipc_test_1004();
-  printk("Test 1004 = %f\n", test1004);
+  printk("Test 1004 = %f\n", test1004/ CLOCKS_PER_SEC);
 	tfm_ipc_test_1005();
-  printk("Test 1005 = %f\n", test1005);
+  printk("Test 1005 = %f\n", test1005/ CLOCKS_PER_SEC);
 	tfm_ipc_test_1006();
-  printk("Test 1006 = %f\n", test1006);
+  printk("Test 1006 = %f\n", test1006/ CLOCKS_PER_SEC);
 
 	printk("TF-M IPC on %s\n", CONFIG_BOARD);
 }
