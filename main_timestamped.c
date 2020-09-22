@@ -12,7 +12,6 @@
 #ifdef TFM_PSA_API
 #include "psa_manifest/sid.h"
 #include <time.h>
-#include <syscall>
 #include <stdlib.h>
 #endif
 
