@@ -11,7 +11,6 @@
 #include "tfm_ns_interface.h"
 #ifdef TFM_PSA_API
 #include "psa_manifest/sid.h"
-#include <time.h>
 #include <stdlib.h>
 #endif
 
@@ -115,17 +114,17 @@ enum tfm_status_e tfm_ns_interface_init(void)
  */
 static void tfm_ipc_test_1001(void)
 {
-  double tic = clock_gettime();
+  double tic = k_uptime_get_32();
 	uint32_t version;
 
 	version = psa_framework_version();
 	if (version == PSA_FRAMEWORK_VERSION) {
 		printk("The version of the PSA Framework API is %d.\n",version);
-           double toc = clock_gettime();
+           double toc = k_uptime_get_32();
            test1001 = (double)(toc-tic);
 	} else {
 		printk("The version of the PSA Framework API is not valid!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1001 = (double)(toc-tic);
 		return;
 	}
@@ -142,14 +141,14 @@ static void tfm_ipc_test_1001(void)
 
 static void tfm_ipc_test_1002(void)
 {
-  double tic = clock_gettime();
+  double tic = k_uptime_get_32();
 	uint32_t version;
 
 	version = psa_version(IPC_SERVICE_TEST_BASIC_SID);
 	if (version == PSA_VERSION_NONE) {
 		printk("RoT Service is not implemented or caller is not ");
 		printk("authorized to access it!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1002 = (double)(toc-tic);
 		return;
 	}
@@ -165,18 +164,18 @@ static void tfm_ipc_test_1002(void)
  */
 static void tfm_ipc_test_1003(void)
 {
-  double tic = clock_gettime();
+  double tic = k_uptime_get_32();
 	psa_handle_t handle;
 
 	handle = psa_connect(IPC_SERVICE_TEST_BASIC_SID,
 			     IPC_SERVICE_TEST_BASIC_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1003 = (double)(toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1003 = (double)(toc-tic);
 		return;
 	}
@@ -190,7 +189,7 @@ static void tfm_ipc_test_1003(void)
  */
 static void tfm_ipc_test_1004(void)
 {
-  double tic = clock_gettime();
+  double tic = k_uptime_get_32();
 	char str1[] = "str1";
 	char str2[] = "str2";
 	char str3[128], str4[128];
@@ -213,11 +212,11 @@ static void tfm_ipc_test_1004(void)
 	status = psa_call(handle, PSA_IPC_CALL, invecs, 2, outvecs, 2);
 	if (status >= 0) {
 		printk("psa_call is successful!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1004 = (double)(toc-tic);
 	} else {
 		printk("psa_call is failed!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1004 = (double)(toc-tic);
 		return;
 	}
@@ -232,7 +231,7 @@ static void tfm_ipc_test_1004(void)
  */
 static void tfm_ipc_test_1005(void)
 {
-  double tic = clock_gettime();
+  double tic = k_uptime_get_32();
 	psa_handle_t handle;
 	psa_status_t status;
 	int test_result;
@@ -243,11 +242,11 @@ static void tfm_ipc_test_1005(void)
 			     IPC_CLIENT_TEST_BASIC_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1005 = (double)(toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1005 = (double)(toc-tic);
 		return;
 	}
@@ -268,7 +267,7 @@ static void tfm_ipc_test_1005(void)
  */
 static void tfm_ipc_test_1006(void)
 {
-  double tic = clock_gettime();
+  double tic = k_uptime_get_32();
 	psa_handle_t handle;
 	psa_status_t status;
 	int test_result;
@@ -280,11 +279,11 @@ static void tfm_ipc_test_1006(void)
 		IPC_CLIENT_TEST_PSA_ACCESS_APP_MEM_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1006 = (double)(toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    double toc = clock_gettime();
+    double toc = k_uptime_get_32();
     test1006 = (double)(toc-tic);
 		return;
 	}
