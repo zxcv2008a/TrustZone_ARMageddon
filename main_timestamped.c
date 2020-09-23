@@ -15,12 +15,12 @@
 #endif
 
 
-u32_t  test1001;
-u32_t  test1002;
-u32_t  test1003;
-u32_t  test1004;
-u32_t  test1005;
-u32_t  test1006;
+uint32_t  test1001;
+uint32_t  test1002;
+uint32_t  test1003;
+uint32_t  test1004;
+uint32_t  test1005;
+uint32_t  test1006;
 
 K_MUTEX_DEFINE(tfm_mutex);
 
@@ -120,11 +120,11 @@ static void tfm_ipc_test_1001(void)
 	version = psa_framework_version();
 	if (version == PSA_FRAMEWORK_VERSION) {
 		printk("The version of the PSA Framework API is %d.\n",version);
-           u32_t  toc = k_uptime_get_32();
+           uint32_t  toc = k_uptime_get_32();
            test1001 = (toc-tic);
 	} else {
 		printk("The version of the PSA Framework API is not valid!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1001 = (toc-tic);
 		return;
 	}
@@ -141,21 +141,21 @@ static void tfm_ipc_test_1001(void)
 
 static void tfm_ipc_test_1002(void)
 {
-  u32_t  tic = k_uptime_get_32();
+  uint32_t  tic = k_uptime_get_32();
 	uint32_t version;
 
 	version = psa_version(IPC_SERVICE_TEST_BASIC_SID);
 	if (version == PSA_VERSION_NONE) {
 		printk("RoT Service is not implemented or caller is not ");
 		printk("authorized to access it!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1002 =(toc-tic);
 		return;
 	}
 
 	/* Valid version number */
 	printk("The minor version is %d.\n", version);
-	u32_t  toc = k_uptime_get_32();
+	uint32_t  toc = k_uptime_get_32();
     	test1002 =(toc-tic);
 }
 
@@ -166,18 +166,18 @@ static void tfm_ipc_test_1002(void)
  */
 static void tfm_ipc_test_1003(void)
 {
-  u32_t  tic = k_uptime_get_32();
+  uint32_t  tic = k_uptime_get_32();
 	psa_handle_t handle;
 
 	handle = psa_connect(IPC_SERVICE_TEST_BASIC_SID,
 			     IPC_SERVICE_TEST_BASIC_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1003 = (toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1003 = (toc-tic);
 		return;
 	}
@@ -191,7 +191,7 @@ static void tfm_ipc_test_1003(void)
  */
 static void tfm_ipc_test_1004(void)
 {
-  u32_t  tic = k_uptime_get_32();
+  uint32_t  tic = k_uptime_get_32();
 	char str1[] = "str1";
 	char str2[] = "str2";
 	char str3[128], str4[128];
@@ -214,11 +214,11 @@ static void tfm_ipc_test_1004(void)
 	status = psa_call(handle, PSA_IPC_CALL, invecs, 2, outvecs, 2);
 	if (status >= 0) {
 		printk("psa_call is successful!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1004 = (toc-tic);
 	} else {
 		printk("psa_call is failed!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1004 = (toc-tic);
 		return;
 	}
@@ -233,7 +233,7 @@ static void tfm_ipc_test_1004(void)
  */
 static void tfm_ipc_test_1005(void)
 {
-  u32_t  tic = k_uptime_get_32();
+  uint32_t  tic = k_uptime_get_32();
 	psa_handle_t handle;
 	psa_status_t status;
 	int test_result;
@@ -244,11 +244,11 @@ static void tfm_ipc_test_1005(void)
 			     IPC_CLIENT_TEST_BASIC_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1005 = (double)(toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1005 = (toc-tic);
 		return;
 	}
@@ -269,7 +269,7 @@ static void tfm_ipc_test_1005(void)
  */
 static void tfm_ipc_test_1006(void)
 {
-  u32_t  tic = k_uptime_get_32();
+  uint32_t  tic = k_uptime_get_32();
 	psa_handle_t handle;
 	psa_status_t status;
 	int test_result;
@@ -281,11 +281,11 @@ static void tfm_ipc_test_1006(void)
 		IPC_CLIENT_TEST_PSA_ACCESS_APP_MEM_VERSION);
 	if (handle > 0) {
 		printk("Connect success!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1006 = (toc-tic);
 	} else {
 		printk("The RoT Service has refused the connection!\n");
-    u32_t  toc = k_uptime_get_32();
+    uint32_t  toc = k_uptime_get_32();
     test1006 = (toc-tic);
 		return;
 	}
