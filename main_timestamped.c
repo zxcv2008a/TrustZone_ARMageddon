@@ -292,44 +292,44 @@ void main(void)
 	double  test1006;
 
 	add(arr,top);
-	tic = k_uptime_get_32();
+	tic = k_cycle_get_32();
 	tfm_ipc_test_1001();
-	toc = k_uptime_get_32();
+	toc = k_cycle_get_32();
 	test1001 = (double)(toc-tic)/1000;
 	
   printf("Test 1001 = %f\n", test1001);
 	
-	tic = k_uptime_get_32();
+	tic = k_cycle_get_32();
 	tfm_ipc_test_1002();
-	toc = k_uptime_get_32();
+	toc = k_cycle_get_32();
 	test1002 = (double)(toc-tic)/1000;
 	
   printf("Test 1002 = %f\n", test1002);
 	
-	tic = k_uptime_get_32();
+	tic = k_cycle_get_32();
 	tfm_ipc_test_1003();
-	toc = k_uptime_get_32();
+	toc = k_cycle_get_32();
 	test1003 = (double)(toc-tic)/1000;
 	
   printf("Test 1003 = %f\n", test1003);
 	
-	tic = k_uptime_get_32();
+	tic = k_cycle_get_32();
 	tfm_ipc_test_1004();
-	toc = k_uptime_get_32();
+	toc = k_cycle_get_32();
 	test1004 = (double)(toc-tic)/1000;
 	
   printf("Test 1004 = %f\n", test1004);
 	
-	tic = k_uptime_get_32();
+	tic = k_cycle_get_32();
 	tfm_ipc_test_1005();
-	toc = k_uptime_get_32();
+	toc = k_cycle_get_32();
 	test1005 = (double)(toc-tic)/1000;
 	
   printf("Test 1005 = %f\n", test1005);
 	
-	tic = k_uptime_get_32();
+	tic = k_cycle_get_32();
 	tfm_ipc_test_1006();
-	toc = k_uptime_get_32();
+	toc = k_cycle_get_32();
 	test1006 = (double)(toc-tic)/1000;
 	
   printf("Test 1006 = %f\n", test1006);
