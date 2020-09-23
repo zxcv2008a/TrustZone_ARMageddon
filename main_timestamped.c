@@ -215,7 +215,7 @@ static void tfm_ipc_test_1004(void)
 	if (status >= 0) {
 		printk("psa_call is successful!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1004 = (toc-tic)/1000;
+    test1004 = (double)(toc-tic)/1000;
 	} else {
 		printk("psa_call is failed!\n");
     uint32_t  toc = k_uptime_get_32();
