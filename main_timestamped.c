@@ -114,7 +114,7 @@ enum tfm_status_e tfm_ns_interface_init(void)
  */
 static void tfm_ipc_test_1001(void)
 {
-  u32_t  tic = k_uptime_get_32();
+  uint32_t  tic = k_uptime_get_32();
 	uint32_t version;
 
 	version = psa_framework_version();
