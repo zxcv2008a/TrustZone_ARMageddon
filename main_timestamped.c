@@ -15,12 +15,12 @@
 #endif
 
 
-uint32_t  test1001;
-uint32_t  test1002;
-uint32_t  test1003;
-uint32_t  test1004;
-uint32_t  test1005;
-uint32_t  test1006;
+double  test1001;
+double  test1002;
+double  test1003;
+double  test1004;
+double  test1005;
+double  test1006;
 
 K_MUTEX_DEFINE(tfm_mutex);
 
@@ -121,11 +121,11 @@ static void tfm_ipc_test_1001(void)
 	if (version == PSA_FRAMEWORK_VERSION) {
 		printk("The version of the PSA Framework API is %d.\n",version);
            uint32_t  toc = k_uptime_get_32();
-           test1001 = (toc-tic);
+           test1001 = (toc-tic)/1000;
 	} else {
 		printk("The version of the PSA Framework API is not valid!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1001 = (toc-tic);
+    test1001 = (double)(toc-tic)/1000;
 		return;
 	}
 
@@ -149,14 +149,14 @@ static void tfm_ipc_test_1002(void)
 		printk("RoT Service is not implemented or caller is not ");
 		printk("authorized to access it!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1002 =(toc-tic);
+    test1002 =(double)(toc-tic)/1000;
 		return;
 	}
 
 	/* Valid version number */
 	printk("The minor version is %d.\n", version);
 	uint32_t  toc = k_uptime_get_32();
-    	test1002 =(toc-tic);
+    	test1002 =(double)(toc-tic)/1000;
 }
 
 /**
@@ -174,11 +174,11 @@ static void tfm_ipc_test_1003(void)
 	if (handle > 0) {
 		printk("Connect success!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1003 = (toc-tic);
+    test1003 = (double)(toc-tic)/1000;
 	} else {
 		printk("The RoT Service has refused the connection!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1003 = (toc-tic);
+    test1003 = (double)(toc-tic)/1000;
 		return;
 	}
 	psa_close(handle);
@@ -215,11 +215,11 @@ static void tfm_ipc_test_1004(void)
 	if (status >= 0) {
 		printk("psa_call is successful!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1004 = (toc-tic);
+    test1004 = (toc-tic)/1000;
 	} else {
 		printk("psa_call is failed!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1004 = (toc-tic);
+    test1004 = (double)(toc-tic)/1000;
 		return;
 	}
 
@@ -245,11 +245,11 @@ static void tfm_ipc_test_1005(void)
 	if (handle > 0) {
 		printk("Connect success!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1005 = (double)(toc-tic);
+    test1005 = (double)(toc-tic)/1000;
 	} else {
 		printk("The RoT Service has refused the connection!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1005 = (toc-tic);
+    test1005 = (double)(toc-tic)/1000;
 		return;
 	}
 
@@ -282,11 +282,11 @@ static void tfm_ipc_test_1006(void)
 	if (handle > 0) {
 		printk("Connect success!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1006 = (toc-tic);
+    test1006 = (double)(toc-tic)/1000;
 	} else {
 		printk("The RoT Service has refused the connection!\n");
     uint32_t  toc = k_uptime_get_32();
-    test1006 = (toc-tic);
+    test1006 = (double)(toc-tic)/1000;
 		return;
 	}
 
@@ -313,18 +313,18 @@ void main(void)
 
 	add(arr,top);
 	tfm_ipc_test_1001();
-  printf("Test 1001 = %" PRIu32 "\n", test1001);
+  printf("Test 1001 = %f\n", test1001);
 
 	tfm_ipc_test_1002();
-  printf("Test 1002 = %" PRIu32 "\n", test1002);
+  printf("Test 1002 = %f\n", test1002);
 	tfm_ipc_test_1003();
-  printf("Test 1003 = %" PRIu32 "\n", test1003);
+  printf("Test 1003 = %f\n", test1003);
 	tfm_ipc_test_1004();
-  printf("Test 1004 = %" PRIu32 "\n", test1004);
+  printf("Test 1004 = %f\n", test1004);
 	tfm_ipc_test_1005();
-  printf("Test 1005 = %" PRIu32 "\n", test1005);
+  printf("Test 1005 = %f\n", test1005);
 	tfm_ipc_test_1006();
-  printf("Test 1006 = %" PRIu32 "\n", test1006);
+  printf("Test 1006 = %f\n", test1006);
 
 	printk("TF-M IPC on %s\n", CONFIG_BOARD);
 }
