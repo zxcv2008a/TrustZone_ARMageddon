@@ -311,18 +311,18 @@ void main(void)
 
 	add(arr,top);
 	tfm_ipc_test_1001();
-  printk("Test 1001 = %f\n", test1001);
+  printf("Test 1001 = %f\n", test1001);
 
 	tfm_ipc_test_1002();
-  printk("Test 1002 = %f\n", test1002);
+  printf("Test 1002 = %f\n", test1002);
 	tfm_ipc_test_1003();
-  printk("Test 1003 = %f\n", test1003);
+  printf("Test 1003 = %f\n", test1003);
 	tfm_ipc_test_1004();
-  printk("Test 1004 = %f\n", test1004);
+  printf("Test 1004 = %f\n", test1004);
 	tfm_ipc_test_1005();
-  printk("Test 1005 = %f\n", test1005);
+  printf("Test 1005 = %f\n", test1005);
 	tfm_ipc_test_1006();
-  printk("Test 1006 = %f\n", test1006);
+  printf("Test 1006 = %f\n", test1006);
 
 	printk("TF-M IPC on %s\n", CONFIG_BOARD);
 }
